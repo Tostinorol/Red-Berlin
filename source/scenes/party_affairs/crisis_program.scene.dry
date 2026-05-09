@@ -19,20 +19,16 @@ However, leftists in the party argue that the WTB plan is merely a bandage over 
 
 Meanwhile, moderates and reformists draw up proposals for a limited plan of job creation through public works, funded through taxes, that does not involve deficit spending or large-scale restructuring of the economy. Labor argues that the plan is inadequate in its scale and ambition.
 
-- @support_centrist: Support the Centrist view.
-- @support_labor: Support the Labor view.
-- @support_left: Support the Left view.
-- @support_moderate: Support the Reformist view.
+- @support_conciliators: Support the Conciliators view.
+- @support_labor: Support the Labor Wing view.
+- @support_thalmannites: Support the Thalmannites view.
 - @defer: Defer making a decision until we have more information.
 
-@support_centrist
-subtitle: Let the depression play itself out.
-on-arrival: center_strength += 5; center_dissent -= 5; labor_dissent += 10; wtb_support -= 1; left_dissent += 10;
+@support_conciliators
+subtitle: Gradually transform the economy to a centrally planned economy, providing concessions to the middle class and farmers to ease the transition.
+on-arrival: conciliators_strength += 5; conciliators_dissent -= 5; thalmannites_dissent += 10; labor_plan_support -= 1; labor_wing_dissent += 5;
 
-Woytinsky and the trade unions vehemently criticize the centrists for their policy. The workers are starving; are we going to callously abandon them and side with bourgeois austerity? On the other hand, the centrists criticize Woytinsky for promising the workers false hope; their position is that nothing can be done to alleviate the depression. They also speak of the fear of another round of hyperinflation that may result from deficit spending.
-
-Our policy course is currently that nothing can be done to alleviate the depression.
-
+Thalmannites criticize our gradual economic transformation plan to be too slow, and a deviation from Moscow's line. The Labor Wing also criticizes the plan for the maintenance of middle-manager's role within the economy.
 
 @support_labor
 subtitle: Call for increased public works and fiscal stimulus.
@@ -70,11 +66,11 @@ on-arrival: left_strength += 15; left_dissent -= 10; reformist_dissent += 10; ne
 
 With our hard work, we have convinced the majority of the party to adopt the socialist economic plan! [? if spd_in_government == 1 : We can begin implementing the plan as soon as possible, as long as we have the Economic or Finance ministries. ?] Bourgeois opposition is likely to be fierce. [? if spd_in_government == 0 : It might be difficult to enact the plan, given present conditions. ?]
 
-@support_moderate
-subtitle: Call for a limited program of job creation without deficit spending.
-unavailable-subtitle: The Reformist faction is not strong enough.
-choose-if: historical_mode == 0 or (reformist_strength >= left_strength and reformist_strength >= center_strength and reformist_strength >= labor_strength)
-on-arrival: moderate_plan_support += 1; reformist_strength += 8; reformist_dissent -= 5; left_dissent += 6; labor_dissent += 5
+@support_conciliators
+subtitle: Gradually transform the economy to a centrally planned economy, providing concessions to the middle class and farmers to ease the transition.
+unavailable-subtitle: The Conciliators faction is not strong enough.
+choose-if: historical_mode == 0 or (conciliators_strength >= thalmannites_strength and conciliators_strength >= labor_wing_strength)
+on-arrival: conciliators_plan_support += 1; conciliators_strength += 8; conciliators_dissent -= 5; thalmannites_dissent += 10; labor_wing_dissent += 5
 go-to: adopt_moderate if moderate_plan_support >= 2; support_moderate_progress if moderate_plan_support < 2
 
 @support_moderate_progress
