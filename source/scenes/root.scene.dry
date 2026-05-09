@@ -45,8 +45,37 @@ Q.dues = 2;
 Q.dissent = 0.05;
 Q.dissent_percent = 5;
 
+// Comintern and Stalinization
+Q.comintern_relations = 70;
+Q.comintern_stalinization = 70;
+// Comintern Delegations Met?
+// French delegation
+Q.fr_met = 0;
+// Italian delegation
+Q.ita_met = 0;
+// British Delegation
+Q.uk_met = 0;
+// American Delegation
+Q.usa_met = 0;
+// Smaller communist parties met
+Q.commin_met = 0;
+
+// revolutionary party organizations
+// Revolutionary Preparendeness
+Q.rev_prep = 0;
+// Revolutionary Fervor within the KPD relative to 1928 (determines support growth in certain cases and coalition viability)
+Q.rev_fervor = 40;
+// strength of KPD's worker councils relative to 1928
+Q.council_strength = 10;
+// strength of ADGB relative to 1928
+Q.adgb_strength = 60;
+// KPD influence in ADBG
+Q.adgb_influence = 20;
+// RGO Strength (only if it was formed) relative to 1928
+Q.rgo_strength = 0;
+
 // factions
-Q.factions = ['thalmannites', 'conciliators', 'labor opposition', 'ultras'];
+Q.factions = ['thalmannites', 'conciliators', 'labor wing', 'ultras'];
 // should this be normalized to 100%?
 Q.thalmannites_strength = 40;
 Q.thalmannites_dissent = 10;
@@ -62,6 +91,7 @@ Q.unions_independent = 0;
 Q.conciliators_resign = 0;
 Q.labor_wing_split = 0;
 Q.ultras_resigned = 0;
+Q.thalmannites_resign = 0;
 
 // have the Ultras formed?
 Q.ultras = 0;
