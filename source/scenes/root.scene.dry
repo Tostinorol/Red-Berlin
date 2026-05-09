@@ -110,7 +110,7 @@ Q.DNVP_relation = 10;
 Q.NSDAP_relation = 0;
 
 Q.kpd_leader = "Thälmann";
-// alternative is the Ernst Meyer or August Thalheimer as party leader
+// alternative is The Conciliators or Heinrich Brandler as party leader
 Q.kpd_party_leader = "Thälmann";
 Q.spd_party_leader = "Wels";
 // party leader - can be Max Seydewitz, or Rudolf Breitscheid, both are more friendly to the KPD. Opportunities to elect them incllude the Magedeberg Conference in 1929 and the Leipzig Conference in 1931.
@@ -549,7 +549,7 @@ Q.levi_dead = 0;
 Q.overlach_advisor = 0; // Helene Overlach
 
 // Conciliator advisors
-Q.ewer_advisor = 0; // Arthur Ewert
+Q.ewert_advisor = 0; // Arthur Ewert
 Q.meyer_advisor = 0; // Ernst Meyer
 Q.geisler_advisor = 0; // Gerhart Eisler
 Q.zetkin_advisor = 0; // Clara Zetkin
@@ -576,7 +576,7 @@ Q.arendsee_advisor = 0; // Martha Arendsee
 set-bg: img/map_2.jpg
 new-page: true
 
-> *"Such a general development cannot be attributed to the false tactics of any single party or to the mistakes of individual leaders. On the contrary, the conduct of individual leaders is determined largely by the sentiments of the people as a whole. It would be erroneous, however, to regard the sentiments of the moment as reflecting the natural make-up and character of the people. They are merely the consequence of the special circumstances which have brought about this profound degradation of the entire nation."*
+> *"Such a general development cannot be attributed to the false tactics of any single party or to the mistakes of individual s. On the contrary, the conduct of individual s is determined largely by the sentiments of the people as a whole. It would be erroneous, however, to regard the sentiments of the moment as reflecting the natural make-up and character of the people. They are merely the consequence of the special circumstances which have brought about this profound degradation of the entire nation."*
 
  - Karl Kautsky, *Hitlerism and Social Democracy*, 1934
 
