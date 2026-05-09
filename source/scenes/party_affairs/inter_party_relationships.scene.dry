@@ -22,11 +22,11 @@ The KPD has refused cooperation with all bourgeuoise parties up to this point. S
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; kpd_inter_party_seen += 1
-go-to: kpd_blutmai if blutmai = 1; kpd_1 if blutmai = 0 and kpd_coalition_success = 0 and (kpd_relation < 40 or kpd_rectified_history = 1); kpd_rectification_of_history if kpd_relation >= 40 and kpd_rectified_history = 0; kpd_2 if kpd_coalition_success = 1 and kpd_rectified_history = 1
+on-arrival: resources -= 1; spd_inter_party_seen += 1
+go-to: kpd_blutmai if blutmai = 1; spd_1 if blutmai = 0 and kpd_coalition_success = 0 and (spd_relation < 40 or kpd_rectified_history = 1); kpd_rectification_of_history if spd_relation >= 40 and kpd_rectified_history = 0; spd_2 if kpd_coalition_success = 1 and kpd_rectified_history = 1
 
 @spd_1
-on-arrival: spd_relation += 6*(1 - dissent); united_front_support += 1; popular_front_support +=1 if kpd_inter_party_seen <= 1; thalmannites_dissent += 5
+on-arrival: spd_relation += 6*(1 - dissent); united_front_support += 1; popular_front_support +=1 if spd_inter_party_seen <= 1; thalmannites_dissent += 5
 
 The SPD is suspicious of our overtures, especially due to our history of conflict. However, connections are easily made at the grassroots and local levels among the unions and chapters.
 
@@ -55,11 +55,11 @@ The SPD refuses to acknowledge its murderous past.
 
 
 @spd_2
-on-arrival: spd_relation += 8*(1 - dissent); united_front_support += 1; popular_front_support +=1 if kpd_inter_party_seen <= 1; thalmannites_dissent += 5
+on-arrival: spd_relation += 8*(1 - dissent); united_front_support += 1; popular_front_support +=1 if spd_inter_party_seen <= 1; thalmannites_dissent += 5
 
 After the success of the coalition government with the SPD, they are much more amenable to us.
 
-@spd_blutmai
+@kpd_blutmai
 on-arrival: spd_relation += 3*(1 - dissent); thalmannites_dissent += 5; labor_wing_dissent += 5
 
 After the events of Blütmai, reconciling with the SPD is difficult, if not impossible. Nevertheless, we must try.
