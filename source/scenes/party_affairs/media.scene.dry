@@ -5,11 +5,11 @@ tags: party_affairs
 view-if: media_timer <= 0
 on-arrival: month_actions += 1; media_timer += 6;
 card-image: img/sangerbund.jpg
-#subtitle: Setting the direction for our newspapers and radio.
+#subtitle: Setting the direction for our media network.
 
 = Media
 
-The SPD runs a veritable media empire, with many newspapers throughout every German city and region. We could use the media for various purposes...
+The KPD lacks the media empire of the SPD. However, we have a skilled, dedicated network of artists, intellgienstia, and writers that can aid our media strategy. We could use the media for various purposes...
 
 - @commercial
 - @campaign
@@ -18,30 +18,31 @@ The SPD runs a veritable media empire, with many newspapers throughout every Ger
 - @radio_2
 - @radio_3
 - @radio_4
+- @cinema
 - @return: We should not do anything with media at the moment.
 - @easy_discard
 - @cancel_advisor_action
 
 @commercial
 title: Make our newspapers more commercialized by broadening their appeal beyond party supporters.
-subtitle: This might upset ideological purists, but it may bring in more funds and perhaps expose the middle class to socialist views.
-on-arrival: resources += 1; commercialized_media += 1; new_middle_spd += 4*(1 - dissent); old_middle_spd += 3*(1-dissent); left_dissent += 10; labor_dissent += 10
+subtitle: This will upset ideological purists, but it may bring in more funds and perhaps expose the middle class to our views.
+on-arrival: resources += 1; commercialized_media += 1; new_middle_kpd += 4*(1 - dissent); old_middle_kpd += 3*(1-dissent); thalmannite_dissent += 10; labor_wing_dissent += 10
 
-Our commercialized newspapers are able to bring in more funds. However, the left and labor factions express their displeasure.
+Our commercialized newspapers are able to bring in more funds. However, the Thalmannites and Labor Wing express their displeasure.
 
 @campaign
-title: The purpose of our media is to elect more Social Democrats.
+title: The purpose of our media is to elect more Communists.
 subtitle: Our newspapers will focus on the electoral campaign.
-on-arrival: campaign_media += 1; workers_spd += 4*(1 - dissent); unemployed_spd += 2*(1-dissent);
+on-arrival: campaign_media += 1; workers_kpd += 4*(1 - dissent); unemployed_kpd += 4*(1-dissent);
 
-Our campaign media is mostly reaching the workers who are already saturated with Socialist propaganda, but it must be doing *something*, or at least that is what we hope.
+This is our historical approach. Our campaign media is mostly reaching the workers who are already saturated with Socialist propaganda, but it must be doing *something*, or at least that is what we hope.
 
 @ideological
 title: We will have vibrant ideological debate within our newspapers.
 subtitle: There will be space for all factions to air their views.
-on-arrival: left_dissent -= 6; labor_dissent -= 6; center_dissent -= 6; reformist_dissent -= 6; neorevisionist_dissent -= 6
+on-arrival: thalmannites_dissent -= 6; labor_wing_dissent -= 6; conciliators_dissent -= 6; ultras_dissent -= 6; comintern_relations -= 5 if comintern_stalinization >= 50
 
-This has been our media course historically, and it has successfully paved over the many tensions in our party.
+This is a departure from our historical approach, and raises concerns among the Stalinists of the Comintern.
 
 @radio
 title: Why not fund a radio station?
@@ -49,9 +50,9 @@ subtitle: -2 resources
 choose-if: resources >= 2
 unavailable-subtitle: Not enough resources.
 view-if: radio = 0
-on-arrival: radio += 1; resources -= 2; new_middle_spd += 4*(1 - dissent); old_middle_spd += 3*(1 - dissent); workers_spd += 2*(1 - dissent); labor_dissent += 5; socialism += 3*(1 - dissent); nationalism -= 3*(1 - dissent) if pacifism > 1; pro_republic += 3*(1-dissent) if democratization > 1
+on-arrival: radio += 1; resources -= 2; new_middle_kpd += 4*(1 - dissent); old_middle_kpd += 3*(1 - dissent); workers_kpd += 2*(1 - dissent); labor_wing_dissent -= 3; socialism += 3*(1 - dissent); nationalism -= 3*(1 - dissent) if pacifism > 1
 
-Our new radio station allows us to connect to people in a more intimate setting than before, spreading the message of socialism along with music and other popular content. Since most proletarians cannot afford family radios right now, we are reaching the middle class, a fact of which our labor comrades are painfully aware.
+Our new radio station allows us to connect to people in a more intimate setting than before, spreading the message of socialism along with music and other popular content. Since most proletarians cannot afford family radios right now, we are reaching the middle class, a fact of which our labor wing is painfully aware.
 
 @radio_2
 title: We must keep on building up our radio network.
@@ -59,7 +60,7 @@ subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 view-if: radio > 0 and radio <= 3
-on-arrival: radio += 1; resources -= 1; new_middle_spd += 5*(1 - dissent); old_middle_spd += 3*(1 - dissent); workers_spd += 3*(1 - dissent); socialism += 3*(1 - dissent); nationalism -= 3*(1 - dissent)*(pacifism-2) if pacifism > 2; pro_republic += 3*(1-dissent)*(democratization-2) if democratization > 2
+on-arrival: radio += 1; resources -= 1; new_middle_kpd += 5*(1 - dissent); old_middle_kpd += 3*(1 - dissent); workers_kpd += 3*(1 - dissent); socialism += 3*(1 - dissent); nationalism -= 3*(1 - dissent)*(pacifism-2) if pacifism > 2
 
 Our new radio network has a mix of popular and political programming, and is proving a success.
 
@@ -67,7 +68,7 @@ Our new radio network has a mix of popular and political programming, and is pro
 title: We must keep on building up our radio network.
 subtitle: It is now financially self-sufficient, and does not require any more resources.
 view-if: radio > 3 and radio <= 5 and year <= 1931
-on-arrival: radio += 1; new_middle_spd += 5*(1 - dissent); old_middle_spd += 4*(1 - dissent); workers_spd += 4*(1 - dissent); rural_spd += 3*(1 - dissent); unemployed_spd += 2*(1-dissent); socialism += 3*(1 - dissent); nationalism -= 3*(1 - dissent)*(pacifism-2) if pacifism > 2; pro_republic += 3*(1-dissent)*(democratization-2) if democratization > 2
+on-arrival: radio += 1; new_middle_kpd += 5*(1 - dissent); old_middle_kpd += 4*(1 - dissent); workers_kpd += 4*(1 - dissent); rural_kpd += 3*(1 - dissent); unemployed_kpd += 2*(1-dissent); socialism += 3*(1 - dissent); nationalism -= 3*(1 - dissent)*(pacifism-2) if pacifism > 2; pro_republic += 3*(1-dissent)*(democratization-2) if democratization > 2
 
 Our radio network has become a successful tool for spreading our message.
 
@@ -77,6 +78,13 @@ subtitle: As radio becomes more common, the novelty is beginning to wear off, an
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 view-if: radio > 3 and (radio >= 6 or year >= 1932) and radio <= 9
-on-arrival: radio += 1; resources -= 1; new_middle_spd += 3*(1 - dissent); old_middle_spd += 2*(1 - dissent); workers_spd += 3*(1 - dissent); rural_spd += 2*(1 - dissent); unemployed_spd += 2*(1-dissent); socialism += 2*(1 - dissent); nationalism -= 2*(1 - dissent)*(pacifism-2) if pacifism > 2; pro_republic += 2*(1-dissent)*(democratization-2) if democratization > 2
+on-arrival: radio += 1; resources -= 1; new_middle_kpd += 3*(1 - dissent); old_middle_kpd += 2*(1 - dissent); workers_kpd += 3*(1 - dissent); rural_kpd += 2*(1 - dissent); unemployed_kpd += 2*(1-dissent); socialism += 2*(1 - dissent); nationalism -= 2*(1 - dissent)*(pacifism-2) if pacifism > 2; pro_republic += 2*(1-dissent)*(democratization-2) if democratization > 2
 
 We are continuing to invest in our radio stations. Both commercial and political radio are becoming more prevalent, making it harder to spread our message amidst the competition.
+
+@cinema
+title: We will use Munzenberg's trust and develop propaganda through an entirely new medium, utilizing striking cinematography to sway the masses.
+subtitle: This is an expensive endeavor, but may be well worth it to challenge the NSDAP's propaganda efforts.
+on-arrival: resources -=4; new_middle_kpd += 3*(1 - dissent); old_middle_kpd += 3*(1 - dissent); workers_kpd += 5*(1 - dissent); rural_kpd += 2*(1 - dissent); unemployed_kpd += 5*(1-dissent); socialism += 4*(1 - dissent)
+
+Using Munzenberg's network of theaters and funds, we produce a film honoring communist efforts of the past century easily accessible to the masses.
