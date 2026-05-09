@@ -41,7 +41,7 @@ For further improvements in SPD relations, we demand the expulsion of Noske and 
 
 @yes_history
 choose-if: spd_party_leader = "seydewitz" or spd_party_leader = "breitscheid" and spd_relations > 40
-unavaiable-subtitle: The SPD left is not strong enough.
+unavailable-subtitle: The SPD left is not strong enough.
 on-arrival: thalmannites_dissent += 12; thalmannites_strength -= 5; labor_wing_dissent -= 5; labor_wing_strength +=5; conciliators_dissent -= 6; conciliators_strength += 10; kpd_rectified_history = 1; spd_relation += 8*(1-dissent)
 
 As part of normalizing relations with us, the SPD has acknowledged the wrongdoings of our past. The bloodhound Noske is expelled, and public commemorations are held for those killed by troops during the uprisings.
