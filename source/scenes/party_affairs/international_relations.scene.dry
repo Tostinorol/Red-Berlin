@@ -13,8 +13,8 @@ At the Communist International, we can forge contacts with our fraternal communi
 - @fr: Build relationships with comintern delegates from the French Communist Party to move their governments in Germany's favor.
 - @uk: Build relationships with comintern delegates from the British Communist Party to move their governments in Germany's favor.
 - @ita: Build relationships with comintern delegates from the Italian Communist Party to move their governments in Germany's favor.
-- @usa: Build relationships with comintern delegates from the American Communist Party.
-- @comi: Build relationships with comintern delegates from small communist parties.
+- @america: Build relationships with comintern delegates from the American Communist Party.
+- @comintern: Build relationships with comintern delegates from small communist parties.
 - @return: We do not need international contacts at the moment.
 - @easy_discard
 - @cancel_advisor_action
@@ -43,14 +43,6 @@ on-arrival: resources -= 1; west_relation += 1; ita_met = 1 if ita_met = 0; conc
 
 The Communists of Italy are open to an alliance with our delegation, and are able to sway their government to improve relations with us.
 
-@comintern
-subtitle: -1 resources
-choose-if: resources >= 1
-unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; west_relation += 1; comin_met = 1 if comin_met = 0
-
-The Communists of smaller parties within the Comintern are open to an alliance with our delegation.
-
 @america
 subtitle: -1 resources
 choose-if: resources >= 1
@@ -58,6 +50,14 @@ unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; west_relation += 1; usa_met = 1 if usa_met = 0; thalmannites_strength += 5
 
 The Communists of America are open to an alliance with our delegation.
+
+@comintern
+subtitle: -1 resources
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; west_relation += 1; comin_met = 1 if comin_met = 0
+
+The Communists of smaller parties within the Comintern are open to an alliance with our delegation.
 
 @reduce
 
