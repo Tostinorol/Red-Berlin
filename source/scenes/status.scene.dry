@@ -189,3 +189,7 @@ Unemployed: KPD: [+ unemployed_kpd_display +]%, SPD: [+ unemployed_spd_display +
 Catholics: KPD: [+ catholics_kpd_display +]%, SPD: [+ catholics_spd_display +]%, Z: [+ catholics_z_display +]%, [? if not ddp_name: DDP?][? if ddp_name != 0 : [+ ddp_name +]?]: [+ catholics_ddp_display +]%, DVP: [+ catholics_dvp_display +]%; DNVP: [+ catholics_dnvp_display +]%, NSDAP: [+ catholics_nsdap_display +]%, Others: [+ catholics_other_display +]% [? if sapd_formed: SAPD: [+ catholics_sapd_display +]% ?]
 
 Support for the Republic: [+ pro_republic_disp +]%
+
+Support for Nationalism: [+ nationalism_disp +]%
+
+Support for Socialism: [+ socialism_disp +]%
