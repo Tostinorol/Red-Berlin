@@ -16,25 +16,6 @@ face-image: img/Rothe_Wahlen_1903.jpg
 The Reichstag elections are to be held now.
 
 - @election_algorithm: May we do our best...
-- @cancel_elections
-
-@cancel_elections
-title: We cannot hold the elections now. Cancel the elections.
-subtitle: This is an anti-democratic move that may backfire.
-view-if: in_emergency_government == 1 and president == "Braun" and not presidential_powers
-
-Since we are currently ruling as part of an emergency government, we may use quasi-constitutional trickery to significantly delay these elections, and continue governing via Article 48. This is likely to be extremely unpopular both with our base and with the other parties. However, this may be necessary to prevent the extremists from gaining power.
-
-- @cancel_elections_2: Yes, do it.
-- @election_algorithm: No, let's hold the elections.
-
-@cancel_elections_2
-on-departure: next_election_year = next_election_year + 1; next_election_time = time + 12; pro_republic -= 10; dvp_relation -= 8; z_relation -= 8; ddp_relation -= 10; kpd_relation -= 8; coup_progress += 2; workers_spd -= 4; new_middle_spd -= 5; old_middle_spd -= 5; rural_spd -= 5; catholics_spd -= 5; unemployed_spd -= 5; coup_progress += 2 if nsdap_normalized >= 0.3; coup_progress += 2 if nsdap_normalized + dnvp_normalized >= 0.5; sa_strength += 100 if coup_progress >= 7; sh_strength += 100 if coup_progress >= 7
-achievement: ausnahmezustand
-
-Fine. President [+ president +] has taken the unprecedented step of canceling these elections. New elections are scheduled for [+ next_election_month : month +] [+ next_election_year +].
-
-Let us hope this does not backfire.
 
 @post_election_1928
 on-arrival: {!
@@ -120,28 +101,34 @@ Q.hitler_right_coalition = Q.z_r + Q.dnvp_r + Q.nsdap_r;
 // Progressive coalition isn't going to be implemented as a distinct coalition but it's the coalition that lets you pass improved women's rights/gay rights
 Q.progressive_coalition = Q.spd_r + Q.kpd_r + Q.ddp_r + Q.sapd_r;
 
-if (Q.kpd_relation >= 30) {
+if (Q.spd_relation >= 30) {
     Q.weimar_coalition += Q.sapd_r;
 }
 
-Q.leverage = Q.spd_r;
+Q.leverage = Q.kpd_r;
 
 Q.grand_coalition_failed = 0;
 // Reset government and ministers... Based on Brüning's 1930 govt
 Q.coalition_dissent = 0;
 Q.kpd_coalition_dissent = 0;
-Q.spd_in_government = 0;
+Q.kpd_in_government = 0;
+Q.kpd_toleration = 0;
 Q.in_weimar_coalition = 0;
+Q.weimar_coalition_gov = 0;
+Q.grand_coalition_gov = 0;
 Q.in_grand_coalition = 0;
 Q.in_united_front = 0;
 Q.in_popular_front = 0;
 Q.in_emergency_government = 0;
+Q.emergency_government = 0;
 Q.in_minority_government = 0;
+Q.minority_government = 0;
 Q.in_unity_government = 0;
+Q.unity_government = 0;
+Q.spd_in_government = 0;
 Q.spd_toleration = 0;
 Q.spd_caretaker = 0;
-Q.kpd_in_government = 0;
-Q.kpd_toleration = 0;
+Q.spd_majority_gov = 0;
 Q.foreign_minister_party = 'DVP';
 Q.interior_minister_party = 'Z';
 Q.justice_minister_party = 'I';
@@ -304,6 +291,10 @@ go-to: coalition_menu
 
 **Potential coalitions:**
 
+United Front (KPD + SPD [? if sapd_formed: + SAPD ?]): [+ united_front_coalition +]%
+
+Popular Front (KPD + SPD + Z + [+ ddp_name +] [? if sapd_formed: + SAPD ?]): [+ popular_front_coalition +]%
+
 Weimar Coalition (SPD + Z + [+ ddp_name +]): [+ weimar_coalition +]%
 
 Grand Coalition (SPD + Z + BVP + [+ ddp_name +] + DVP): [+ grand_coalition +]%
@@ -320,6 +311,10 @@ There are some potential coalition arrangements.
 
 @coalition_menu
 
+- @opposition
+- @toleration_menu
+- @united_front_coalition
+- @popular_front_coalition
 - @spd_majority
 - @weimar_coalition
 - @grand_coalition
@@ -328,11 +323,121 @@ There are some potential coalition arrangements.
 - @far_right_coalition
 - @no_majority
 - @brauns_dilemma
-- @united_front_coalition
-- @popular_front_coalition
 - @right_coalition
 
 # TODO: black-brown coalition
+
+@opposition
+title: Remain in opposition.
+subtitle: This is the default KPD line.
+go-to: opposition_followup_check
+
+We will remain in opposition. If the SPD and the bourgeois parties wish to form a government, they must do so without our participation.
+
+Still, if a social democratic government could survive only because of our support, we may yet be forced to decide whether to tolerate it from the outside or refuse it entirely.
+
+@opposition_followup_check
+go-to: toleration_menu if ((spd_r < 50 and spd_r + kpd_r >= 50) or (weimar_coalition < 50 and weimar_coalition + kpd_r >= 50)); opposition_resolution if not ((spd_r < 50 and spd_r + kpd_r >= 50) or (weimar_coalition < 50 and weimar_coalition + kpd_r >= 50))
+
+@toleration_menu
+title: The SPD may govern only if we allow it.
+subtitle: Will we tolerate them from the outside?
+unavailable-subtitle: An SPD-led government either cannot presently survive through our support or does not need our support.
+choose-if: (spd_r < 50 and spd_r + kpd_r >= 50) or (weimar_coalition < 50 and weimar_coalition + kpd_r >= 50)
+
+The SPD may be able to form or sustain a government only if we allow it to survive from the outside. We could tolerate such a government as a tactical measure to pressure the left-wing of the SPD, or refuse and leave the social democrats to fend for themselves.
+
+- @spd_tolerated
+- @weimar_toleration
+- @opposition_refuse_again
+- @to_coalition_menu
+
+@spd_tolerated
+title: Tolerate an SPD-led government.
+subtitle: We remain outside the government, but allow it to survive only as long as we allow it to, and only if they install a friendly chancellor.
+unavailable-subtitle: An SPD-led government either cannot presently survive through our support or does not need our support.
+choose-if: spd_r < 50 and spd_r + kpd_r >= 50 
+on-arrival: kpd_toleration = 1; kpd_in_government = 0; spd_in_government = 1; minority_government = 1; spd_relation += 10; thalmannites_dissent += 8; conciliators_dissent -= 3; labor_wing_dissent -= 2; chancellor = "Breitscheid"; chancellor_party = "SPD"; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD"; foreign_minister = "Breitscheid"; interior_minister = "Seydewitz"; justice_minister = "Rosenfeld"; labor_minister = "Wissell"; reichswehr_minister = "Breitscheid"; economic_minister = "Hilferding"; finance_minister = "Hilferding"; agriculture_minister = "Baade";
+
+We will not enter a bourgeois government, but neither will we immediately bring down a social democratic ministry if our support can keep the right from power.
+
+Many in the party, especially the Thälmannites, are furious at this concession to social democracy. Others argue that tactical flexibility may strengthen us in the long run.
+
+@weimar_toleration
+title: Tolerate an SPD-led Weimar Coalition.
+subtitle: We will remain outside the government, but allow it to survive to keep the far right out of power. Our toleration agreement gives the SPD the leveraged need to grab key cabinet positions.
+unavailable-subtitle: The parties of the coalition do not need or want our support.
+choose-if: weimar_coalition < 50 and weimar_coalition + kpd_r >= 50 and z_party_leader != "Stegerwald"
+on-arrival: kpd_toleration = 1; kpd_in_government = 0; weimar_coalition_gov = 1; spd_in_government = 1; minority_government = 1; in_popular_front = 0; in_left_front = 0; spd_relation +=10; thalmannites_dissent += 10; conciliators_dissent -= 5; labor_wing_dissent -= 5; chancellor = "Breitscheid"; chancellor_party = "SPD"; foreign_minister_party = "Z"; interior_minister_party = "Z"; justice_minister_party = ddp_name; labor_minister_party = "SPD"; reichswehr_minister_party = "I"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "Z"; foreign_minister = "Wirth"; interior_minister = "Wirth"; justice_minister = "Koch-Weser"; labor_minister = "Wissell"; reichswehr_minister = "Groener"; economic_minister = "Hilferding"; finance_minister = "Hilferding"; agriculture_minister = "Hermes";
+
+We have tolerated a Weimar Coalition government on the condition that the SPD recieves more cabinet positions in order to keep the right from power. This has improved relations between our two parties, but has caused outrage among the Thalmannites of the party.
+
+@opposition_refuse_again
+title: Refuse toleration.
+subtitle: We will not support the bourgeois government.
+on-arrival: kpd_toleration = 0; kpd_in_government = 0
+go-to: opposition_resolution
+
+We will neither join nor tolerate an SPD-led government. Let the social democrats and the bourgeois parties resolve their own contradictions.
+
+@opposition_resolution
+title: We have refused cooperation with any coalition, and the government of Germany will be formed without our influence.
+
+- @spd_majority
+- @weimar_coalition
+- @grand_coalition
+- @new_grand_coalition
+- @unity_government
+- @far_right_coalition
+- @no_majority
+- @brauns_dilemma
+- @right_coalition
+
+@spd_majority
+title: SPD majority alone
+subtitle: SPD: [+ spd_r +]%
+view-if: spd_r >= 50
+on-arrival: kpd_in_government = 0; kpd_toleration = 0; chancellor = "Empty"; chancellor_party = "SPD"; spd_in_government = 1; spd_majority_gov = 1; pro_republic += 5; foreign_minister_party = "SPD"; foreign_minister = "Breitscheid"; interior_minister_party = "SPD"; interior_minister = "Severing"; justice_minister_party = "SPD"; justice_minister = "Radbruch"; labor_minister_party = "SPD"; labor_minister = "Wissell"; reichswehr_minister_party = "SPD"; reichswehr_minister = "Leber"; economic_minister_party = "SPD"; economic_minister = "Schmidt"; finance_minister_party = "SPD"; finance_minister = "Hilferding"; agriculture_minister_party = "SPD"; agriculture_minister = "Baade"; reichswehr_loyalty -= 0.05; 
+achievement: majority_party
+
+The SPD has garnered enough votes to govern alone. Who will the party select as their chancellor?
+
+- @braun_majority_chancellor: Otto Braun for Chancellor.
+- @breitscheid_majority_chancellor: Rudolf Breitscheid for Chancellor.
+- @rosenfeld_majority_chancellor: Kurt Rosenfeld for Chancellor.
+- @muller_majority_chancellor: Hermann Müller for Chancellor.
+- @wels_majority_chancellor: Otto Wels for Chancellor.
+
+@braun_majority_chancellor
+view-if: (not historical_mode or not spd_prussia) and spd_relation <= 30
+on-arrival: chancellor = "Braun"
+
+[? if president == "Braun": The SPD has discovered that there is no specific prohibition against the Chancellor also being the President (the President may not be a member of the Reichstag; there is no law saying that the Chancellor must be a member of the Reichstag). Thus, we have Chancellor-President Otto Braun. ?]
+[? if president != "Braun": Otto Braun has become chancellor of the SPD majority. ?]
+
+@breitscheid_majority_chancellor
+view-if: spd_relation >= 50 and spd_relation < 70 and (spd_party_leader == "Breitscheid" or spd_party_leader == "Rosenfeld")
+on-arrival: chancellor = "Breitscheid"
+
+Rudolf Breitscheid has become chancellor of the SPD majority.
+
+@rosenfeld_majority_chancellor
+view-if: spd_relation >= 70 and spd_party_leader = "Rosenfeld"
+on-arrival: chancellor = "Rosenfeld"
+
+Kurt Rosenfeld has become chancellor of the SPD majority.
+
+@muller_majority_chancellor
+view-if: muller_dead = 0 and spd_relation < 50
+on-arrival: chancellor = "Müller"
+
+Hermann Müller has become chancellor of the SPD majority.
+
+@wels_majority_chancellor
+view-if: muller_dead = 1 and spd_relation < 50
+on-arrival: chancellor = "Wels"
+
+Otto Wels has become chancellor of the SPD majority.
 
 
 @popular_front_coalition
