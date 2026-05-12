@@ -367,7 +367,7 @@ Many in the party, especially the Thälmannites, are furious at this concession 
 title: Tolerate an SPD-led Weimar Coalition.
 subtitle: We will remain outside the government, but allow it to survive to keep the far right out of power. Our toleration agreement gives the SPD the leveraged need to grab key cabinet positions.
 unavailable-subtitle: The parties of the coalition do not need or want our support.
-choose-if: weimar_coalition < 50 and weimar_coalition + kpd_r >= 50 and z_party_leader != "Stegerwald"
+choose-if: weimar_coalition < 50 and weimar_coalition + kpd_r >= 50 and z_party_leader != "Kaas"
 on-arrival: kpd_toleration = 1; kpd_in_government = 0; weimar_coalition_gov = 1; spd_in_government = 1; minority_government = 1; in_popular_front = 0; in_left_front = 0; spd_relation +=10; thalmannites_dissent += 10; conciliators_dissent -= 5; labor_wing_dissent -= 5; chancellor = "Breitscheid"; chancellor_party = "SPD"; foreign_minister_party = "Z"; interior_minister_party = "Z"; justice_minister_party = ddp_name; labor_minister_party = "SPD"; reichswehr_minister_party = "I"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "Z"; foreign_minister = "Wirth"; interior_minister = "Wirth"; justice_minister = "Koch-Weser"; labor_minister = "Wissell"; reichswehr_minister = "Groener"; economic_minister = "Hilferding"; finance_minister = "Hilferding"; agriculture_minister = "Hermes";
 
 We have tolerated a Weimar Coalition government on the condition that the SPD recieves more cabinet positions in order to keep the right from power. This has improved relations between our two parties, but has caused outrage among the Thalmannites of the party.
@@ -375,7 +375,6 @@ We have tolerated a Weimar Coalition government on the condition that the SPD re
 @opposition_refuse_again
 title: Refuse toleration.
 subtitle: We will not support the bourgeois government.
-on-arrival: kpd_toleration = 0; kpd_in_government = 0
 go-to: opposition_resolution
 
 We will neither join nor tolerate an SPD-led government. Let the social democrats and the bourgeois parties resolve their own contradictions.
@@ -461,13 +460,13 @@ title: The SPD leads the Weimar Coalition.
 - @weimar_spd_braun
 
 @weimar_spd_muller
-view-if: muller_dead = 0 and not (spd_relation >= 50 and (spd_party_leader = "Breitscheid" or spd_party_leader = "Rosenfeld"))
+view-if: muller_dead = 0 and not (spd_relation >= 70 and spd_party_leader = "Rosenfeld") and spd_relation < 60 and not (spd_relation <= 30 and not historical_mode)
 on-arrival: chancellor = "Müller"; chancellor_party = "SPD"; kpd_toleration = 0; kpd_in_government = 0; in_weimar_coalition = 1; spd_in_government = 1; minority_government = 0; in_popular_front = 0; in_united_front = 0; foreign_minister_party = "Z"; interior_minister_party = "SPD"; justice_minister_party = ddp_name; labor_minister_party = "SPD"; reichswehr_minister_party = "I"; economic_minister_party = "SPD"; finance_minister_party = "Z"; agriculture_minister_party = "Z"; foreign_minister = "Wirth"; interior_minister = "Severing"; justice_minister = "Koch-Weser"; labor_minister = "Wissell"; reichswehr_minister = "Groener"; economic_minister = "Hilferding"; finance_minister = "Hermes"; agriculture_minister = "Hermes";
 title: Herman Muller has gathered the party behind him.
 Hermann Müller has become chancellor of the Weimar Coalition.
 
 @weimar_spd_wels
-view-if: muller_dead = 1 and not (spd_relation >= 50 and (spd_party_leader = "Breitscheid" or spd_party_leader = "Rosenfeld"))
+view-if: muller_dead = 1 and not (spd_relation >= 70 and spd_party_leader = "Rosenfeld") and spd_relation < 60 and not (spd_relation <= 30 and not historical_mode)
 on-arrival: chancellor = "Wels"; chancellor_party = "SPD"; kpd_toleration = 0; kpd_in_government = 0; in_weimar_coalition = 1; spd_in_government = 1; minority_government = 0; in_popular_front = 0; in_united_front = 0; foreign_minister_party = "Z"; interior_minister_party = "SPD"; justice_minister_party = ddp_name; labor_minister_party = "SPD"; reichswehr_minister_party = "I"; economic_minister_party = "SPD"; finance_minister_party = "Z"; agriculture_minister_party = "Z"; foreign_minister = "Wirth"; interior_minister = "Severing"; justice_minister = "Koch-Weser"; labor_minister = "Wissell"; reichswehr_minister = "Groener"; economic_minister = "Hilferding"; finance_minister = "Hermes"; agriculture_minister = "Hermes";
 title: Otto Wels has rallied the party behind him.
 
@@ -475,10 +474,7 @@ Otto Wels has become chancellor of the Weimar Coalition.
 
 @weimar_spd_breitscheid
 title: Breitscheid rallies the party behind himself.
-subtitle: Breitscheid aims to unite the center, left, and labor wings of the party.
-unavailable-subtitle: The left-wing of the party prefers their own leader, Rosenfeld.
-view-if: spd_relation >= 50 and (spd_party_leader = "Breitscheid" or spd_party_leader = "Rosenfeld")
-choose-if: spd_relation >= 50 and spd_party_leader != "Rosenfeld"
+view-if: spd_relation >= 60 and not (spd_relation >= 70 and spd_party_leader = "Rosenfeld")
 on-arrival: chancellor = "Breitscheid"; chancellor_party = "SPD"; kpd_toleration = 0; kpd_in_government = 0; in_weimar_coalition = 1; spd_in_government = 1; minority_government = 0; in_popular_front = 0; in_united_front = 0; foreign_minister_party = "Z"; interior_minister_party = "SPD"; justice_minister_party = ddp_name; labor_minister_party = "SPD"; reichswehr_minister_party = "I"; economic_minister_party = "SPD"; finance_minister_party = "Z"; agriculture_minister_party = "Z"; foreign_minister = "Wirth"; interior_minister = "Rosenfeld"; justice_minister = "Koch-Weser"; labor_minister = "Wissell"; reichswehr_minister = "Groener"; economic_minister = "Hilferding"; finance_minister = "Hermes"; agriculture_minister = "Hermes";
 
 Rudolf Breitscheid has become chancellor of the Weimar Coalition, aided by the friendly relations between our two parties.
@@ -497,78 +493,38 @@ on-arrival: chancellor = "Braun"; chancellor_party = "SPD"; kpd_toleration = 0; 
 [? if president == "Braun": The SPD has discovered that there is no specific prohibition against the Chancellor also being the President (the President may not be a member of the Reichstag; there is no law saying that the Chancellor must be a member of the Reichstag). Thus, we have Chancellor-President Otto Braun. ?]
 [? if president != "Braun": Otto Braun has become chancellor of the Weimar Coalition. ?]
 
+@weimar_zentrum_lead
+view-if: z_r >= spd_r and z_r >= ddp_r and weimar_coalition >= 50
+title: Zentrum leads the Weimar Coalition.
 
-- @muller
-- @braun
-- @breitscheid_coalition_chancellor
-- @wels
-- @z_chancellor
-- @z_chancellor_wirth
+- @weimar_zentrum_bruning
+- @weimar_zentrum_wirth
 
-@muller
-title: Hermann Müller for Chancellor
-view-if: muller_dead = 0
-subtitle: Müller is popular within the party, and is the preferred candidate of the Center and other parties.
-on-arrival: spd_in_government = 1; chancellor = "Müller"; chancellor_party = "SPD"; in_grand_coalition = 1 if in_weimar_coalition == 0
-go-to: ministries
-
-Müller's appointment as chancellor is approved by all our potential allies.
-
-@wels
-title: Otto Wels for Chancellor
-view-if: muller_dead = 1
-subtitle: Otto Wels is a party leader, but can he also be chancellor?
-on-arrival: spd_in_government = 1; chancellor = "Wels"; chancellor_party = "SPD"; in_grand_coalition = 1 if in_weimar_coalition == 0
-go-to: ministries
-
-Otto Wels's appointment as chancellor is approved by our potential allies.
-
-@braun
-title: Otto Braun for Chancellor
-view-if: not historical_mode or not spd_prussia
-subtitle: Braun is currently the Minister-President of Prussia, and is one of our most popular leaders. However, other parties may have qualms about concentrating too much power in one man.
-
-The Center party has significant qualms about appointing Braun as chancellor, given that he is already Minister-President of Prussia. They ask for either more cabinet positions, or for Braun to resign his state government role. The latter is completely unacceptable.
-
-- @muller
-- @wels
-- @braun_2: Let the Center have their cabinet positions.
-
-@braun_2
-subtitle: Otto Braun will be Chancellor.
-view-if: not historical_mode
-on-arrival: spd_in_government = 1; chancellor = "Braun"; chancellor_party = "SPD"; leverage -= 10; in_grand_coalition = 1 if in_weimar_coalition == 0
-go-to: ministries
-
-We have promised to let the Center have more influence in the government in response to the appointment of Braun as chancellor.
-
-@breitscheid_coalition_chancellor
-title: Rudolf Breitscheid for Chancellor
-subtitle: Breitscheid is viewed as friendlier towards the left of the SPD.
-view-if: year >= 1930
-on-arrival: chancellor = "Breitscheid"; chancellor_party = "SPD";
-go-to: ministries
-
-Rudolf Breitscheid has been appointed chancellor.
-
-@z_chancellor
+@weimar_zentrum_bruning
 title: Let the Center Party have their chancellor.
-subtitle: Heinrich Brüning will be chancellor. This is unexpected and will cause internal dissent, but may give us a better position in negotiating for other cabinet positions.
-on-arrival: left_dissent += 5; center_dissent += 5; labor_dissent += 5; z_relation += 10; dvp_relation += 5; kpd_relation -= 5; in_grand_coalition = 1 if in_weimar_coalition == 0; chancellor = "Brüning"; chancellor_party = "Z"; spd_in_government = 1; leverage += 5
-go-to: ministries
+subtitle: Heinrich Brüning will be chancellor. 
+on-arrival: kpd_in_government = 0; kpd_toleration = 0; in_popular_front = 0; in_united_front = 0; minority_government = 0; spd_in_government = 1; in_weimar_coalition = 1; chancellor = "Brüning"; chancellor_party = "Z"; foreign_minister_party = "Z"; interior_minister_party = "SPD"; justice_minister_party = ddp_name; labor_minister_party = "SPD"; reichswehr_minister_party = "I"; economic_minister_party = ddp_name; finance_minister_party = "Z"; agriculture_minister_party = "Z"; foreign_minister = "Wirth"; interior_minister = "Severing"; justice_minister = "Koch-Weser"; labor_minister = "Wissell"; reichswehr_minister = "Groener"; economic_minister = "Dietrich"; finance_minister = "Köhler"; agriculture_minister = "Hermes";
 
-This is highly unexpected, and many in the left and center of our party are criticizing this decision.
+Zentrum has elected Heinrich Bruning to the Chancellorship.
 
 [? if year == 1928 : Since Wilhelm Marx resigned, Heinrich Brüning has been appointed chancellor. ?]
 [? if year > 1928: Heinrich Brüning of the Center Party has been appointed chancellor. ?]
 
-@z_chancellor_wirth
-title: Let Joseph Wirth of the Center Party be chancellor.
+@weimar_zentrum_wirth
+title: Joseph Wirth of the Center Party can become chancellor.
 view-if: z_party_leader == "Joos"
-subtitle: Wirth is on the left wing of the Center Party. This may give us a better position in negotiating for other cabinet positions.
-on-arrival: left_dissent += 2; z_relation += 6; ddp_relation += 3; kpd_relation -= 5; in_grand_coalition = 1 if in_weimar_coalition == 0; chancellor = "Wirth"; chancellor_party = "Z"; spd_in_government = 1; leverage += 5
-go-to: ministries
+subtitle: Wirth is on the left wing of the Center Party. This givs the SPD a better position in negotiating for other cabinet positions.
+on-arrival: kpd_in_government = 0; kpd_toleration = 0; in_popular_front = 0; in_united_front = 0; spd_in_government = 1; in_weimar_coalition = 1; minority_government = 0; in_popular_front = 0; in_united_front = 0; chancellor = "Wirth"; chancellor_party = "Z"; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = ddp_name; labor_minister_party = "SPD"; reichswehr_minister_party = "I"; economic_minister_party = ddp_name; finance_minister_party = "Z"; agriculture_minister_party = "Z"; foreign_minister = "Breitscheid"; interior_minister = "Severing"; justice_minister = "Koch-Weser"; labor_minister = "Wissell"; reichswehr_minister = "Groener"; economic_minister = "Dietrich"; finance_minister = "Köhler"; agriculture_minister = "Hermes";
 
+Joseph Wirth has been elected Chancellor by Zentrum, marking a left-ward shift of Zentrum. 
+
+@weimar_ddp_lead
+title: The liberals lead the Weimar Coalition.
+subtitle: The DDP, though small, has emerged as the leading force within the republican coalition.
+view-if: ddp_r > spd_r and ddp_r > z_r and weimar_coalition >= 50
+on-arrival: kpd_toleration = 0; kpd_in_government = 0; in_weimar_coalition = 1; spd_in_government = 1; minority_government = 0; in_popular_front = 0; in_united_front = 0; chancellor = "Koch-Weser"; chancellor_party = ddp_name; foreign_minister_party = "Z"; interior_minister_party = "SPD"; justice_minister_party = ddp_name; labor_minister_party = "SPD"; reichswehr_minister_party = "I"; economic_minister_party = ddp_name; finance_minister_party = "Z"; agriculture_minister_party = "Z"; foreign_minister = "Wirth"; interior_minister = "Severing"; justice_minister = "Koch-Weser"; labor_minister = "Wissell"; reichswehr_minister = "Groener"; economic_minister = "Dietrich"; finance_minister = "Hermes"; agriculture_minister = "Hermes";
+
+Erich Koch-Weser has become chancellor of the Weimar Coalition. Though improbable, the liberals have succeeded in taking the leading role in a broad republican cabinet.
 
 @popular_front_coalition
 title: A new "Popular Front" coalition?
