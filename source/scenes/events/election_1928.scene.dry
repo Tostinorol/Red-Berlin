@@ -384,13 +384,12 @@ title: We have refused cooperation with any coalition, and the Reichstag will be
 
 - @spd_majority
 - @weimar_coalition
-- @grand_coalition
-- @new_grand_coalition
+- @grand_coalition_oppo
 - @unity_government
+- @right_coalition_2
 - @far_right_coalition
 - @no_majority
 - @brauns_dilemma
-- @right_coalition
 
 @spd_majority
 title: SPD majority alone
@@ -525,6 +524,138 @@ view-if: ddp_r > spd_r and ddp_r > z_r and weimar_coalition >= 50
 on-arrival: kpd_toleration = 0; kpd_in_government = 0; in_weimar_coalition = 1; spd_in_government = 1; minority_government = 0; in_popular_front = 0; in_united_front = 0; chancellor = "Koch-Weser"; chancellor_party = ddp_name; foreign_minister_party = "Z"; interior_minister_party = "SPD"; justice_minister_party = ddp_name; labor_minister_party = "SPD"; reichswehr_minister_party = "I"; economic_minister_party = ddp_name; finance_minister_party = "Z"; agriculture_minister_party = "Z"; foreign_minister = "Wirth"; interior_minister = "Severing"; justice_minister = "Koch-Weser"; labor_minister = "Wissell"; reichswehr_minister = "Groener"; economic_minister = "Dietrich"; finance_minister = "Hermes"; agriculture_minister = "Hermes";
 
 Erich Koch-Weser has become chancellor of the Weimar Coalition. Though improbable, the liberals have succeeded in taking the leading role in a broad republican cabinet.
+
+@grand_coalition_oppo
+title: A Grand Coalition between the bourgeois parties can be formed.
+subtitle: SPD + Z + BVP + [+ ddp_name +] + DVP ([+ grand_coalition +]%)
+view-if: grand_coalition >= 50 and unemployment_insurance_seen = 0 and z_party_leader != "Kaas"
+go-to: grand_coalition_spd_lead if (n_elections <= 1 and largest_party == "SPD") or (largest_party == "SPD" and spd_r >= 30) or president = "Braun"; grand_coalition_z_lead if president != "Braun" and ((n_elections > 1 and spd_r < 30) or (n_elections <= 1 and largest_party != "SPD"))
+
+- @grand_coalition_spd_lead
+- @toleration_bruning
+
+@grand_coalition_spd_lead
+view-if: grand_coalition >= 50 and ((unemployment_insurance_crisis = 0 and z_party_leader != "Kaas") or president = "Braun")
+on-arrival: chancellor = "Müller"; chancellor_party = "SPD"; kpd_toleration = 0; kpd_in_government = 0; in_grand_coalition = 1; grand_coalition_gov = 1; spd_in_government = 1; spd_toleration = 0; minority_government = 0; in_popular_front = 0; in_united_front = 0; foreign_minister_party = "Z"; interior_minister_party = "SPD"; justice_minister_party = ddp_name; labor_minister_party = "SPD"; reichswehr_minister_party = "I"; economic_minister_party = "DVP"; finance_minister_party = "Z"; agriculture_minister_party = "Z"; foreign_minister = "Wirth"; interior_minister = "Severing"; justice_minister = "Koch-Weser"; labor_minister = "Wissell"; reichswehr_minister = "Groener"; economic_minister = "Curtius"; finance_minister = "Hermes"; agriculture_minister = "Hermes";
+
+As expected, the SPD is the largest party, and this time, they are expected to take the lead role in the formation of the next government, including selecting the chancellor. The makeup of this coalition has limited their ability to improve relations with us.
+
+@toleration_bruning
+view-if: neo_weimar_coalition >= 50 and ((unemployment_insurance_seen = 1 and z_party_leader == "Kaas") or president == "Hindenburg")
+on-arrival: chancellor = "Brüning"; chancellor_party = "Z"; spd_in_government = 0; spd_toleration = 1; kpd_in_government = 0; kpd_toleration = 0; minority_government = 1; in_grand_coalition = 0; grand_coalition_gov = 0; in_weimar_coalition = 0; in_popular_front = 0; in_united_front = 0; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "I"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = ddp_name; finance_minister_party = "DVP"; agriculture_minister_party = "Z"; foreign_minister = "Curtius"; interior_minister = "Wirth"; justice_minister = "Gürtner"; labor_minister = "Stegerwald"; reichswehr_minister = "Groener"; economic_minister = "Dietrich"; finance_minister = "Curtius"; agriculture_minister = "Hermes";
+
+The SPD decided to tolerate Brüning's government. They have shackled themselves to a failing government, hoping to prevent a far-right coalition.
+
+@unity_government
+title: The Center Party offers to form a "Government of National Unity" under Chancellor Joseph Wirth.
+subtitle: SPD + Z + BVP + [+ ddp_name +] + DVP + Others ([+ neo_weimar_coalition +]%)
+view-if: z_party_leader == "Joos" and neo_weimar_coalition >= 50 and weimar_coalition < 50
+on-arrival: chancellor = "Wirth"; chancellor_party = "Z"; spd_in_government = 1; spd_toleration = 0; kpd_in_government = 0; kpd_toleration = 0; in_grand_coalition = 1; in_unity_government = 1; unity_government = 1; minority_government = 0; in_weimar_coalition = 0; in_popular_front = 0; in_united_front = 0; foreign_minister_party = "Z"; interior_minister_party = "SPD"; justice_minister_party = ddp_name; labor_minister_party = "SPD"; reichswehr_minister_party = "I"; economic_minister_party = "DVP"; finance_minister_party = "Z"; agriculture_minister_party = "Z"; foreign_minister = "Wirth"; interior_minister = "Severing"; justice_minister = "Koch-Weser"; labor_minister = "Wissell"; reichswehr_minister = "Groener"; economic_minister = "Curtius"; finance_minister = "Hermes"; agriculture_minister = "Hermes";
+
+The Center Party leader, Joseph Joos, clearly sees the threat from the ascension of the anti-democratic extremist parties, and thus tries to negotiate a "Government of National Unity" to save the republic. This coalition would be led by Joseph Wirth, a left-leaning member of the Center Party and former chancellor, and would encompass all of the constitutional parties. As an explicitly anti-extrimist pact, they are weary of us.
+
+@right_coalition_2
+unavailable-subtitle: The DNVP is not interested in a coalition with the Center.
+view-if: right_coalition >= 50
+choose-if: year < 1929
+on-arrival: kpd_in_government = 0; kpd_toleration = 0; spd_in_government = 0; spd_toleration = 0; chancellor = "Brüning"; chancellor_party = "Z"; foreign_minister_party = "DVP"; interior_minister_party = "DNVP"; justice_minister_party = "DNVP"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = "DVP"; finance_minister_party = "Z"; agriculture_minister_party = "DNVP"; in_right_coalition = 1;
+
+Even though the DNVP is very reluctant to participate in such a coalition, they still accede to President Hindenburg's wishes. Thus, a majority center-right coalition is formed, with Brüning as chancellor.
+
+@far_right_coalition
+title: Far-right coalition
+subtitle: NSDAP + DNVP ([+ far_right_coalition +]%)
+view-if: far_right_coalition >= 50
+go-to: far_right_win if (year >= 1932 or nsdap_r >= 44) and president != "Braun"; far_right_fail if (year < 1932 and nsdap_r < 44) and president != "Braun"; far_right_braun if president == "Braun"
+priority: 2
+
+There are enough votes for the Nazis and the DNVP to form a coalition. [+ nsdap_leader +] has made his participation in government contingent on being appointed chancellor. It is up to President [+ president +] to decide.
+
+@far_right_win
+on-arrival: chancellor = nsdap_leader; chancellor_party = "NSDAP"
+
+[? if president == "Hindenburg" : President Hindenburg's camarilla ?][? if president == "Braun" : President Braun somehow ?] has decided that [+ nsdap_leader +] must be chancellor [? if president == "Hindenburg": , and the aging president accepts their recommendations. ?][? if president == "Braun" : because it is what the constitution would stipulate. ?]
+
+- @hitler_takes_power: What do we do now?
+
+
+@far_right_fail
+on-arrival: chancellor = "Schleicher"; chancellor_party = "I"; pro_republic -= 10; next_election_time = time+5; next_election_month = month + 5; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12;
+
+The reactionary establishment is still very skeptical of the Nazis, so instead, [+ president +] appoints Kurt von Schleicher, a former general, as chancellor, to try to "tame" the Nazis.
+
+Schleicher's government is deeply unpopular among all parties of the Reichstag. Despite his support for a coalition with the NSDAP, the Nazis want power all to themselves, without Schleicher.
+
+New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+
+@far_right_braun
+on-arrival: coup_progress += 2
+
+President Braun faces a dilemma. Is it "democratic" to let democracy be destroyed, if the majority of voters have willed it so? Some, even on the left, suggest that the Nazis would not *truly* be as horrific as their platform suggests, and that giving them power would let them discredit themselves in the eyes of the public.
+
+Alternatively, Braun could use the emergency powers of the presidency. Article 48 has been used by Hindenburg to promulgate anti-democratic and anti-worker policies; can Article 48 be used for good as well as evil?
+
+- @emergency_braun: We will form an emergency government with Braun's support.
+- @new_elections: We will have new elections.
+- @far_right_win: Let the Nazis form their government.
+
+@no_majority
+title: There is no clear governing majority.
+view-if: weimar_coalition < 50 and (grand_coalition < 50 or grand_coalition_failed == 1) and president == "Hindenburg" and far_right_coalition < 50)
+on-arrival: no_majority_elections += 1
+go-to: no_majority_bruning if chancellor == "Brüning" or chancellor == "Wirth"; no_majority_papen if chancellor == "Papen" and no_majority_papen_elections == 0; no_majority_papen_2 if chancellor == "Papen" and no_majority_papen_elections > 0; no_majority_schleicher if chancellor == "Schleicher"; no_majority_spd if chancellor_party == "SPD" or chancellor == "Marx"
+
+There is no workable parliamentary majority. The SPD is unable to form a stable government, while the bourgeois parties are too divided to construct one of their own through the Reichstag alone. The paralysis of the republic deepens, and with it the temptation to rule through the President and his camarilla rather than through parliament.
+
+@no_majority_spd
+on-arrival: chancellor = "Brüning"; chancellor_party = "Z"; spd_in_government = 0; spd_toleration = 0; in_grand_coalition = 0; in_unity_government = 0; minority_government = 0
+
+There is no path to an obviously workable majority. President Hindenburg will not accept a minority or caretaker government led by the SPD, and so attention turns instead to Heinrich Brüning of the Center Party. The social democrats may yet keep such a government alive from outside, but they will not be admitted into it.
+
+- @toleration_bruning: The SPD will tolerate Brüning from outside.
+- @new_elections: There will be new elections.
+
+@no_majority_bruning
+go-to: no_majority_bruning_toleration if (no_majority_elections <= 3 and anti_democratic_coalition <= 50); hindenburg_appoints_papen if no_majority_elections > 3 or anti_democratic_coalition > 50
+
+@no_majority_bruning_toleration
+on-arrival: no_majority_bruning_elections += 1
+
+There is no path to a majority government. Brüning may continue in office only so long as the SPD refuses to bring him down. This leaves the social democrats in the worst of all positions: responsible for preserving the republic, but excluded from actually governing it.
+
+- @toleration_bruning: The SPD will tolerate Brüning from outside.
+- @new_elections: Dissolve the Reichstag and call new elections.
+
+@hindenburg_appoints_papen
+on-arrival: chancellor = "Papen"; chancellor_party = "I"; kpd_in_government = 0; kpd_toleration = 0; spd_in_government = 0; spd_toleration = 0; minority_government = 1; in_grand_coalition = 0; in_unity_government = 0; next_election_time = time + 3; next_election_month = month + 3; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; sa_banned = 0; pro_republic -= 8; finance_minister_party = "I"; interior_minister_party = "I"; economic_minister_party = "I"; labor_minister_party = "I"; foreign_minister_party = "I"; agriculture_minister_party = "I"; reichswehr_minister_party = "I"
+
+There is no path to a majority government. President Hindenburg is tired of the deadlock and appoints Franz von Papen as chancellor instead of Brüning. Parliamentary majorities now matter less than the intrigues of the presidential court.
+
+Papen is immediately faced with a vote of no confidence. No matter how the SPD votes, he cannot long survive in the Reichstag; but the further humiliation of parliament only strengthens anti-democratic sentiment.
+
+New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+
+@no_majority_papen
+on-arrival: pro_republic -= 10; next_election_time = time + 3; next_election_month = month + 3; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; workers_nsdap += 6; unemployed_nsdap += 6; old_middle_nsdap += 5; new_middle_nsdap += 5; rural_nsdap += 5; no_majority_papen_elections += 1; workers_spd -= 8 if pro_republic < 45; workers_spd *= 0.85 if pro_republic < 40; workers_nsdap += 5 if pro_republic < 40
+
+After the elections, Papen remains deeply unpopular and without meaningful coalition support. A vote of no confidence is called almost immediately, and the Reichstag is dissolved once more.
+
+Each failure of presidential rule further discredits the republic and creates new opportunities for the NSDAP among ruined workers, the unemployed, and the desperate middle classes.
+
+New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+
+@no_majority_papen_2
+on-arrival: chancellor = "Schleicher"; chancellor_party = "I"; kpd_in_government = 0; kpd_toleration = 0; spd_in_government = 0; spd_toleration = 0; minority_government = 1; in_grand_coalition = 0; in_unity_government = 0; pro_republic -= 10; next_election_time = time + 5; next_election_month = month + 5; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; workers_nsdap += 5; unemployed_nsdap += 10; old_middle_nsdap += 5; new_middle_nsdap += 5; rural_nsdap += 10; workers_spd -= 8 if pro_republic < 45; workers_spd *= 0.85 if pro_republic < 40; workers_nsdap += 5 if pro_republic < 40; finance_minister_party = "I"; interior_minister_party = "I"; economic_minister_party = "I"; labor_minister_party = "I"; foreign_minister_party = "I"; agriculture_minister_party = "I"; reichswehr_minister_party = "I"
+
+There is still no path to a majority government. Hindenburg abandons Papen and appoints Kurt von Schleicher instead, hoping that another presidential cabinet can stabilize the crisis.
+
+It cannot. Schleicher's government is isolated, unpopular, and dependent on maneuvers above the heads of the parties. The republic continues to decay, while the Nazis wait for power to fall into their hands.
+
+New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+
+@no_majority_schleicher
+go-to: hitler_chancellor
+
 
 @popular_front_coalition
 title: A new "Popular Front" coalition?
