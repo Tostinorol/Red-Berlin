@@ -12,12 +12,12 @@ go-to: main_rally; sa_disrupt if sa_strength > 180 and not sa_banned and not ret
 The Nazi SA has disrupted our rally! Their street troops are preventing us from meeting.
 
 - @police_protect: Call the police to protect our rally.
-- @rb_protect: Use the Reichsbanner to protect our rally.
-- @both_protect: The police and Reichsbanner should work together to protect our rally.
+- @rfb_protect: Use the RFB to protect our rally.
+- @both_protect: The police and Roter Frontkampferbund should work together to protect our rally.
 - @cancel: Cancel the rally.
 
 @police_protect
-view-if: spd_prussia == 1
+view-if: spd_prussia == 1; spd_relation >= 70
 on-arrival: police_protect_success = prussian_police_loyalty * prussian_police_militancy * prussian_police_strength*2 - sa_militancy*sa_strength;
 go-to: police_protect_win if police_protect_success >= 0; police_protect_lose if police_protect_success < 0
 
@@ -31,36 +31,36 @@ on-arrival: strife += 1; workers_nsdap += 3
 
 Unfortunately, the police were unable or unwilling to hold back the SA mob. The Nazis have won this show of strength.
 
-@rb_protect
-on-arrival: rb_success = rb_strength*rb_militancy - sa_strength*sa_militancy; strife += 1
-go-to: rb_protect_win if rb_success >= 0; rb_protect_lose if rb_success < 0
+@rfb_protect
+on-arrival: rfb_success = rfb_strength*rfb_militancy - sa_strength*sa_militancy; strife += 1
+go-to: rfb_protect_win if rfb_success >= 0; rfb_protect_lose if rfb_success < 0
 
-@rb_protect_win
+@rfb_protect_win
 go-to: main_rally
 
-The Reichsbanner has successfully protected our rally against the SA! Our meeting can go ahead as usual.
+The Roter Frontkampferbund has successfully protected our rally against the SA! Our meeting can go ahead as usual.
 
-@rb_protect_lose
+@rfb_protect_lose
 on-arrival: workers_nsdap += 3; rb_strength -= 50
 
-Unfortunately, the Reichsbanner was not able to hold back the SA mob. The Nazis have won this show of strength.
+Unfortunately, the Roter Frontkampferbund was not able to hold back the SA mob. The Nazis have won this show of strength.
 
 @both_protect
 view-if: spd_prussia
-choose-if: prussian_police_training > 0
-unavailable-subtitle: The loyal sections of the police have never coordinated with the Reichsbanner before.
-on-arrival: rb_success = rb_strength*rb_militancy - sa_strength*sa_militancy + prussian_police_loyalty*prussian_police_militancy*prussian_police_strength*2; strife += 1
-go-to: both_protect_win if rb_success >= 0; both_protect_lose if rb_success < 0
+choose-if: spd_relations > 70
+unavailable-subtitle: The SPD is not willing to order its police to protect us.
+on-arrival: rb_success = rfb_strength*rfb_militancy - sa_strength*sa_militancy + prussian_police_loyalty*prussian_police_militancy*prussian_police_strength*2; strife += 1
+go-to: both_protect_win if rfb_success >= 0; both_protect_lose if rfb_success < 0
 
 @both_protect_win
 go-to: main_rally
 
-The police and Reichsbanner have successfully protected our rally against the SA! Our meeting can go ahead as usual.
+The police and RFB have successfully protected our rally against the SA! Our meeting can go ahead as usual.
 
 @both_protect_lose
-on-arrival: workers_nsdap += 3; rb_strength -= 50
+on-arrival: workers_nsdap += 3; rfb_strength -= 50
 
-Unfortunately, the police and Reichsbanner were not able to hold back the SA mob. The Nazis have won this show of strength.
+Unfortunately, the police and RFB were not able to hold back the SA mob. The Nazis have won this show of strength.
 
 
 @cancel
@@ -70,36 +70,33 @@ The SA have won this show of strength.
 
 @main_rally
 
-Mass rallies are a common feature of social democratic life, especially in the lead-up to an election. What is the primary theme of this rally?
+Mass rallies of the workers are a display of our strength, and provide us a direct opportunity to speak to the masses all at once. What will the theme of this rally be?
 
-- @class_struggle: The class struggle of the proletariat against the bourgeoisie.
-- @welfare: Sozialpolitik - the maintenance and expansion of social welfare programs.
-- @democracy: Expanding our nascent democracy and defending it against dictatorship and fascism.
+- @revolution: Capitalism is collapsing, while we seek to grasp the moment, the social fascists claim to be its savior.
+- @united_front: The masses of workers, united, will lead the fight against fascism and capitalism.
+- @labor_front: The unions, councils, and toiling masses will be the center of a socialist future, regardless of affiliation. 
 - @pacifism: Opposing war, nationalism, and militarism at all costs.
 - @wtb: Support the WTB plan!
 - @local: A mixture of various local and national concerns that resonate most with the audience.
 - @easy_discard
 
-@class_struggle
-on-arrival: workers_spd += 4*(1-dissent); unemployed_spd += 3*(1-dissent) if left_strength > reformist_strength; workers_spd += 4*(1-dissent) if nationalization_progress > 0; unemployed_spd += 3*(1-dissent) if nationalization_progress > 0; left_strength += 5; left_dissent -= 5; old_middle_spd -= 3; new_middle_spd -= 2;
+@revolution
+on-arrival: workers_kpd += 3*(1-dissent); workers_kpd += 4*(1-dissent) if pro_republic < 40; workers_kpd += 4*(1-dissent) if socialism >= 70; workers_kpd += 5*(1-dissent) if pro_republic < 40 and socialism >= 60; unemployed_kpd += 4*(1-dissent) if thalmannites_strength > labor_wing_strength; workers_spd += 5*(1-dissent) if nationalization_progress > 0; unemployed_spd += 5*(1-dissent) if nationalization_progress > 0; thalmannites_strength += 5; thalmannites_dissent -= 5; old_middle_kpd -= 4; new_middle_kpd -= 3; spd_relation -= 5; z_relation -= 8; socialism += 2*(1 - dissent); pro_republic -= 2*(1 - dissent) 
 
-Our message of class struggle appeals to the left wing of the working class, while potentially alienating the middle class. [? if nationalization_progress > 0 : Our achievements in nationalization have assisted our messaging. ?]
+Our message of revolution is expected, but it appeals to the left wing of the working class, while surely alienating the middle class and other parties. [? if nationalization_progress > 0 : Our achievements in nationalization have assisted our messaging. ?]
 
-@welfare
-on-arrival: workers_spd += 3*(1-dissent); workers_spd += 3*(1-dissent) if welfare > 0; unemployed_spd += 3*(1-dissent) if welfare > 0; unemployed_spd += 4*(1-dissent) if welfare > 1; reformist_strength += 3; labor_strength += 4; reformist_dissent -= 3; labor_dissent -= 3;
+@united_front
+on-arrival: workers_kpd += 3*(1-dissent); workers_kpd += 4*(1-dissent) if socialism >= 60; unemployed_kpd += 3*(1-dissent); unemployed_kpd += 5*(1-dissent) if socialism >= 60; conciliators_strength += 5; labor_wing_strength += 3; conciliators_dissent -= 3; labor_wing_dissent -= 3; spd_relation += 5; z_relation += 2; united_front_support += 2; popular_front_support += 1 socialism += 2*(1-dissent); pro_republic += 2*(1-dissent)
 
-The reformist message appeals to the organized workers, whose benefits are the accomplishments of social democracy. [? if welfare > 1 : Our achievements in expanding welfare have made this message more effective. ?]
+The conciliatory rhetoric is unexpected, but welcomed by the left and some centrists within the SPD. Our message of working class unity against the forces of reaction Grassroots support for a united front against fascism is growing among the rank-and-file of both parties, even the middle-class.
 
-@democracy
-on-arrival: democratization += 1; pro_republic += 2*(1 - dissent); workers_spd += 4*(1-dissent) if democratization >= 3; unemployed_spd += 3*(1-dissent) if democratization >= 3; pro_republic += 4*(1 - dissent) if democratization >= 3; new_middle_spd += 4*(1-dissent) if democratization >= 3 
+@labor_front
+on-arrival: workers_kpd += 4*(1-dissent); workers_kpd += 5*(1-dissent) if socialism >= 50; unemployed_kpd += 4*(1-dissent); unemployed_kpd += 6*(1-dissent) if socialism >= 50; new_middle_spd += 1*(1-dissent); new_middle_spd += 2*(1-dissent) if socialism >= 50; socialism += 2*(1-dissent); adgb_strength += 5
 
-Our speakers defend the republican system and rail against the monarchists and authoritarians who threaten it.
-
-[? if democratization < 3 : Talk of democracy does not excite the workers as much as more practical issues. But that may change; part of our job is to provide political education to the proletariat. ?]
-[? if democratization >= 3 : Since we have consistently made democratization a theme of our campaign, the workers are enthusiastic about our message. ?]
+Our speakers center their focus on the unions and laboring masses, speaking on issues that matter to the average worker, and call for a massive increase in union organization and representation in the party. The workers and unions in kind flock are receptive to the message.
 
 @pacifism
-on-arrival: pacifism += 1; nationalism -= 2*(1 - dissent); workers_spd += 4*(1 - dissent) if pacifism >= 3; unemployed_spd += 3*(1-dissent) if pacifism >= 3; nationalism -= 3*(1-dissent) if pacifism >= 3; new_middle_spd += 4*(1-dissent) if pacifism >= 3
+on-arrival: pacifism += 1; nationalism -= 2*(1 - dissent); workers_kpd += 4*(1 - dissent) if pacifism >= 3; unemployed_kpd += 3*(1-dissent) if pacifism >= 3; nationalism -= 3*(1-dissent) if pacifism >= 3; new_middle_kpd += 4*(1-dissent) if pacifism >= 3
 
 Our speakers denounce the military establishment and all the spending entering that black hole. Some adventurous speakers question the responsibility of the military elites in organizing the Great War.
 
@@ -116,6 +113,6 @@ The WTB plan has become a popular rallying cry for our party. The workers are ea
 
 
 @local
-on-arrival: workers_spd += 3*(1-dissent); old_middle_spd += 1*(1-dissent); new_middle_spd += 2*(1-dissent); unemployed_spd += 3*(1-dissent);
+on-arrival: workers_kpd += 3*(1-dissent); old_middle_kpd += 1*(1-dissent); new_middle_kpd += 2*(1-dissent); unemployed_kpd += 3*(1-dissent);
 
 Our speakers have gauged the mood and are speaking to the issues that seem to most affect the workers in this moment.
