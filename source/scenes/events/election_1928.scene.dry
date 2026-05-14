@@ -916,6 +916,15 @@ subtitle: A broad socialist compromise. Lower leverage and lower backlash.
 on-arrival: chancellor = "Breitscheid"; chancellor_party = "SPD"; leverage += 5; spd_relation += 8; coup_progress += 3; capital_strike_progress += 2;
 go-to: united_front_coalition_civil_war if coup_progress >= 10; united_front_coalition_no_civil_war if coup_progress < 10
 
+@united_front_rosenfeld
+title: Press for Kurt Rosenfeld.
+subtitle: A more militant socialist compromise. Higher leverage and higher risk.
+view-if: spd_party_leader == "Rosenfeld" or spd_relation >= 70
+on-arrival: chancellor = "Rosenfeld"; chancellor_party = "SPD"; leverage -= 5; spd_relation += 5; coup_progress += 4; capital_strike_progress += 3;
+go-to: united_front_coalition_civil_war if coup_progress >= 10; united_front_coalition_no_civil_war if coup_progress < 10
+
+We insist on a chancellor closer to the militant socialist left. Rosenfeld is far preferable to the reformist mainstream of the SPD, but his appointment further alarms the state apparatus and the organized right.
+
 @united_front_thalmann
 choose-if: president != "Hindenburg" and spd_relation >= 75
 unavailable-subtitle: [? if president == "Hindenburg": President [+ president +] would never allow such a thing. ?] [? if spd_relation < 75 : Most in the parliamentary party would not support Thälmann as chancellor. ?]
@@ -928,6 +937,24 @@ Immediately, [+ chancellor +] goes to work building a "Soviet Germany": consolid
 In response to [+ chancellor +] being appointed Chancellor, the right-wing forces launches almost immediately launch an attempted coup. Troops of the Stahlhelm and Nazi SA enter Berlin and immediately begin clashing with our supporters! Reactionary officers within the Reichswehr have taken their troops out of the barracks and joined them with the Stahlhelm to stop the KPD from taking power. We are forced to be on the same side as the SPD, whether we want to or not.
 
 - @civil_war
+
+@united_front_brandler
+title: Demand Heinrich Brandler as chancellor.
+subtitle: A Communist workers' government. Very high leverage and danger.
+view-if: president != "Hindenburg" and (kpd_party_leader != "Thalmann" or labor_wing_strength >= thalmannites_strength)
+on-arrival: chancellor = "Brandler"; chancellor_party = "KPD"; spd_in_government = 1; kpd_in_government = 1; in_left_front = 1; in_popular_front = 0; in_weimar_coalition = 0; in_grand_coalition = 0; in_unity_government = 0; minority_government = 0; kpd_toleration = 0; spd_toleration = 0; leverage = 23; kpd_relation += 12; coup_progress += 5; capital_strike_progress += 4; reformist_dissent += 5;
+go-to: united_front_coalition_civil_war if coup_progress >= 10; united_front_coalition_no_civil_war if coup_progress < 10
+
+We demand Heinrich Brandler as chancellor. Among communist leaders, he is one of the few whom the SPD might conceivably accept in the name of anti-fascist workers' unity. Even so, this pushes the coalition toward open confrontation with the right.
+
+@united_front_ewert
+title: Demand a Conciliator communist chancellor.
+subtitle: Arthur Ewert / Ernst Meyer as a Communist unity candidate. High leverage and danger.
+view-if: president != "Hindenburg" and kpd_party_leader != "Thalmann"
+on-arrival: chancellor = "Ewert"; chancellor_party = "KPD"; spd_in_government = 1; kpd_in_government = 1; in_left_front = 1; in_popular_front = 0; in_weimar_coalition = 0; in_grand_coalition = 0; in_unity_government = 0; minority_government = 0; kpd_toleration = 0; spd_toleration = 0; leverage = 22; kpd_relation += 12; coup_progress += 5; capital_strike_progress += 4; reformist_dissent += 4;
+go-to: united_front_coalition_civil_war if coup_progress >= 10; united_front_coalition_no_civil_war if coup_progress < 10
+
+We press for one of the KPD's conciliatory leaders to head the united workers' government. This is less incendiary than handing power to Thälmann, but it still marks a historic victory for the Communists and sharply escalates right-wing hostility.
 
 @united_front_coalition_no_civil_war
 on-arrival: kpd_goals_seen = 0; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_loyalty -= 0.05
