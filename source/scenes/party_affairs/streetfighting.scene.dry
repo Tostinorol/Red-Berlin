@@ -1,18 +1,18 @@
 title: Streetfighting
 new-page: true
 is-card: true
-on-arrival: streetfighting_timer = 6; month_actions += 1; rb_militarization_cost = 2 if rb_militancy > 0.1 else rb_militarization_cost = 1; rb_militarization_cost = 3 if rb_militancy > 0.25; strife += 1
-view-if: year >= 1930 and sa_strength >= 150 and streetfighting_timer == 0 and not return_to_normalcy
+on-arrival: streetfighting_timer = 6; month_actions += 1; rfb_militarization_cost = 2 if rfb_militancy > 0.1 else rfb_militarization_cost = 1; rfb_militarization_cost = 3 if rfb_militancy > 0.25; strife += 1
+view-if: streetfighting_timer == 0 and not return_to_normalcy
 card-image: img/blutmai_2.jpg
 tags: party_affairs; antifascism
 
 = Streetfighting
 
-Battles rage on the streets between the Nazi SA, nationalist Stahlhelm, communist Rotfrontkämpferbund (RFB), and our own Reichsbanner. In some parts of the country, conditions are nearing civil war levels, as dozens of people are killed each month.
+Battles rage on the streets between the Nazi SA, nationalist Stahlhelm, the Republican - SPD Reichsbanner, and our own Rotfrontkämpferbund (RFB). In some parts of the country, conditions are nearing civil war levels, as dozens of people are killed each month.
 
-We must do something to protect the workers against these predations.
+We must do something to oppose the fascists in the streets.
 
-# - @battle: Test our defense units in battle against the fascists!
+- @battle: Test our shock units in battle against the enemy.
 - @arm_rfb: Increase training and armaments for the Reichsbanner.
 - @antifa_training: Train union members to fight as part of Antifaschiste Aktion.
 - @union_recruiting: Rally workers from the unions we influence to join us.
@@ -21,11 +21,24 @@ We must do something to protect the workers against these predations.
 - @easy_discard
 
 @battle
-view-if: rfb_militancy > 0.1 and rfb_militancy < 0.5
-on-arrival: rfb_militancy += 0.1; sa_strength += 40; rfb_strength -= 100; 
-max-visits: 10
+title: We will test our forces against the enemy. 
+view-if: rfb_militancy > 0.1 
+- @attack_rb_rally
+- @attack_sa_rally
 
-Many Reichsbanner members are not ready for actual fighting, and thus quit. However, the remainder are toughened as a result. Our confrontations also provide ample recruiting material for the Nazi SA.
+Many Rotfrontkampferbund members are eager to take the fight to the enemy. Where will we direct our members?
+
+@attack_rb_rally
+unavailable-subtitle: We have signed a truce with the Reichsbanner
+choose-if: kpd_truce == 0
+on-arrival: rfb_militancy += 0.03; rdb_strength -= 50; rb_strength -= 50; sa_strength += 50; spd_relation -= 10; z_relation -= 10; workers_spd -= 5*(1-dissent); workers_kpd += 5*(1-dissent);
+
+We have disrupted a Reichsbanner rally, and have shown the workers that the real representatives of the working class reject their organizations.
+
+@attack_sa_rally
+on-arrival: rfb_militancy += 0.03; rfb_strength -= 50; sa_strength -= 50; workers_nsdap -= 5*(1-dissent); workers_kpd += 5*(1-dissent); spd_relation -= 5 if spd_party_leader == "Wels";
+
+We have disrupted an SA rally, and have shown the workers how weak the Nazis really are. 
 
 @arm_rfb
 subtitle: -[+ rfb_militarization_cost +] resource
@@ -33,7 +46,7 @@ choose-if: resources >= rfb_militarization_cost
 unavailable-subtitle: Not enough resources ([+ rfb_militarization_cost +] needed).
 on-arrival: resources -= rfb_militarization_cost; rfb_militancy += 0.06; rfb_strength += 50; rfb_strength += 100 if socialism >= 60; sa_strength += 50; z_relation -= 5 if historical_mode 
 
-We have increased training and purchased more armaments for the Reichsbanner.
+We have increased training and purchased more armaments for the RFB.
 
 [? if historical_mode : The Center Party decries the militarization of the Reichsbanner, and its members are leaving the republican organization. ?]
 
@@ -50,12 +63,12 @@ unavailable-subtitle: We do not have enough influence within the union movement 
 choose-if: adgb_influence >= 50 or rgo_strength >= 50
 on-arrival: rfb_militancy += 0.05; sa_strength += 50; rfb_strength += 75; adgb_influence -= 10 
 
-The radical workers of the union movement join us, at the cost of influence among the unions.
+We recruit radical workers of the union movement into the RFB, at the expense of influence among the unions.
 
 @peace
 on-arrival: rfb_militancy -= 0.02; rfb_strength -= 50; pacifism += 1
 
-By not fighting, the strength of the Reichsbanner atrophies. Pacifists in the party are gaining the upper hand.
+By not fighting, the strength of the RFB atrophies. Pacifists in the party are gaining the upper hand.
 
 @truce_rfb
 choose-if: spd_relation >= 45
@@ -63,4 +76,4 @@ view-if: kpd_truce == 0
 unavailable-subtitle: The SPD is not interested.
 on-arrival: kpd_truce = 1; spd_relation += 5; rfb_strength += 50; rb_strength += 50; sa_strength += 50;
 
-We have made at least a temporary truce with the KPD, so that our respective paramilitaries will stop fighting.
+We have made at least a temporary truce with the SPD, so that our respective paramilitaries will stop fighting.
