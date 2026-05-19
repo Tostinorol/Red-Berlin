@@ -1,6 +1,6 @@
 title: Ottomar Beschke
 is-pinned-card: true
-tags: advisor, nonfactional
+tags: advisor
 card-image: img/portraits/AufhäuserSiegfried.jpg
 view-if: beschke_advisor = 1
 new-page: true 
