@@ -581,7 +581,7 @@ Q.overlach_advisor = 0; // Helene Overlach
 // Conciliator advisors
 Q.ewert_advisor = 0; // Arthur Ewert
 Q.meyer_advisor = 0; // Ernst Meyer
-Q.geisler_advisor = 0; // Gerhart Eisler
+Q.eisler_advisor = 0; // Gerhart Eisler
 Q.zetkin_advisor = 0; // Clara Zetkin
 Q.schumann_advisor = 0; // George Schumann
 
@@ -592,7 +592,7 @@ Q.walcher_advisor = 0; // Jacob Walcher
 Q.wolfstein_advisor = 0; // Rosi Wolfstein
 
 // Ultras advisors
-Q.Neumann_advisor = 0; // Heinz Neumann
+Q.neumann_advisor = 0; // Heinz Neumann
 Q.remmele_advisor = 0; // Hermann Remmele
 Q.kippenberger_advisor = 0; // Hans Kippenberger
 Q.mielke_advisor = 0; // Erich Mielke
