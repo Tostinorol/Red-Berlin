@@ -1,0 +1,8 @@
+title: Heinz Kessler
+is-pinned-card: true
+tags: advisor, thalmannites
+card-image: img/portraits/AufhäuserSiegfried.jpg
+view-if: kessler_advisor = 1
+new-page: true 
+
+= Heinz Kessler
