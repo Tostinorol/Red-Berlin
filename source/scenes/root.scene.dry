@@ -581,6 +581,7 @@ Q.overlach_advisor = 0; // Helene Overlach
 // Conciliator advisors
 Q.ewert_advisor = 0; // Arthur Ewert
 Q.meyer_advisor = 0; // Ernst Meyer
+Q.meyer_dead = 0;
 Q.eisler_advisor = 0; // Gerhart Eisler
 Q.zetkin_advisor = 0; // Clara Zetkin
 Q.schumann_advisor = 0; // George Schumann
