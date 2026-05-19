@@ -1,0 +1,8 @@
+title: Ernst Thalmann
+is-pinned-card: true
+tags: advisor, thalmannites
+card-image: img/portraits/StampferFriedrich.jpg
+view-if: thalmann_advisor = 1
+new-page: true 
+
+= Ernst Thalmann
