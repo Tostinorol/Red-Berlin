@@ -1,0 +1,8 @@
+title: Heinz Neumann
+is-pinned-card: true
+tags: advisor
+card-image: img/portraits/StampferFriedrich.jpg
+view-if: neumann_advisor = 1
+new-page: true 
+
+= Heinz Neumann
