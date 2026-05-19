@@ -1,0 +1,8 @@
+title: Clara Zetkin
+is-pinned-card: true
+tags: advisor, conciliators
+card-image: img/portraits/StampferFriedrich.jpg
+view-if: zetkin_advisor = 1
+new-page: true 
+
+= Clara Zetkin
