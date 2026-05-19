@@ -1,0 +1,8 @@
+title: Georg Schumann
+is-pinned-card: true
+tags: advisor, conciliators
+card-image: img/portraits/StampferFriedrich.jpg
+view-if: schumann_advisor = 1
+new-page: true 
+
+= Georg Schumann
