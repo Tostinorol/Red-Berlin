@@ -1,0 +1,8 @@
+title: John Schehr
+is-pinned-card: true
+tags: advisor, thalmannites
+card-image: img/portraits/StampferFriedrich.jpg
+view-if: schehr_advisor = 1
+new-page: true 
+
+= John Schehr
