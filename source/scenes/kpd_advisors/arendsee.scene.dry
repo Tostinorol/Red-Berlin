@@ -1,6 +1,6 @@
 title: Martha Arendsee
 is-pinned-card: true
-tags: advisor, non factional
+tags: advisor
 card-image: img/portraits/AufhäuserSiegfried.jpg
 view-if: arendsee_advisor = 1
 new-page: true 
