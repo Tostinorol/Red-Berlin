@@ -1,0 +1,8 @@
+title: Walter Ulbricht
+is-pinned-card: true
+tags: advisor
+card-image: img/portraits/StampferFriedrich.jpg
+view-if: ulbricht_advisor = 1
+new-page: true 
+
+= Walter Ulbricht
