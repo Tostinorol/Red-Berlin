@@ -1,0 +1,8 @@
+title: Jacob Walcher
+is-pinned-card: true
+tags: advisor, labor wing
+card-image: img/portraits/StampferFriedrich.jpg
+view-if: walcher_advisor = 1
+new-page: true 
+
+= Jacob Walcher
