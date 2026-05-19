@@ -1,0 +1,8 @@
+title: Ernst Meyer
+is-pinned-card: true
+tags: advisor, conciliators
+card-image: img/portraits/AufhäuserSiegfried.jpg
+view-if: meyer_advisor = 1
+new-page: true 
+
+= Ernst Meyer
