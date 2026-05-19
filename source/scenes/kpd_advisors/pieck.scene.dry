@@ -1,0 +1,8 @@
+title: Wilhelm Pieck
+is-pinned-card: true
+tags: advisor
+card-image: img/portraits/StampferFriedrich.jpg
+view-if: pieck_advisor = 1
+new-page: true 
+
+= Wilehlm Pieck
