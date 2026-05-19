@@ -1,0 +1,8 @@
+title: Erich Mielke
+is-pinned-card: true
+tags: advisor, ultras
+card-image: img/portraits/AufhäuserSiegfried.jpg
+view-if: mielke_advisor = 1
+new-page: true 
+
+= Erich Mielke
