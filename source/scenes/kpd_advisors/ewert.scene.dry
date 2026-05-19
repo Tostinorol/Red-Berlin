@@ -1,0 +1,8 @@
+title: Arthur Ewert
+is-pinned-card: true
+tags: advisor, conciliators
+card-image: img/portraits/AufhäuserSiegfried.jpg
+view-if: ewert_advisor = 1
+new-page: true 
+
+= Arthur Ewert
