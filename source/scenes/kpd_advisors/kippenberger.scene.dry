@@ -1,0 +1,8 @@
+title: Hans Kippenberger
+is-pinned-card: true
+tags: advisor, ultras
+card-image: img/portraits/AufhäuserSiegfried.jpg
+view-if: kippenberger_advisor = 1
+new-page: true 
+
+= Hans Kippenberger
