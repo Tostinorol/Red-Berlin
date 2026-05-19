@@ -1,0 +1,8 @@
+title: Hermann Remmele
+is-pinned-card: true
+tags: advisor
+card-image: img/portraits/StampferFriedrich.jpg
+view-if: remmele_advisor = 1
+new-page: true 
+
+= Hermann Remmele
