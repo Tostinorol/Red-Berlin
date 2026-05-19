@@ -1,0 +1,8 @@
+title: Gerhart Eisler
+is-pinned-card: true
+tags: advisor, conciliators
+card-image: img/portraits/AufhäuserSiegfried.jpg
+view-if: eisler_advisor = 1
+new-page: true 
+
+= Gerhart Eisler
