@@ -6,3 +6,17 @@ view-if: arendsee_advisor = 1
 new-page: true 
 
 = Martha Arendsee
+
+Arendsee is a longtime member of the KPD, a Reichstag member, and a prominent member of the Internationale Arbeiterhilfe.
+
+- @arbeiterhilfe
+- @die_kommunistin
+- @fundraising
+- @root: Return to main
+
+@arbeiterhilfe
+title: Conducting mutual aid for workers in Germany
+sbtitle: Improve our standing among the working class.
+choose-if: advisor_action_timer <= 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?] 
+on-arrival: advisor_action_timer = 6; worker_kpd += 6*(1-dissent);
