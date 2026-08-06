@@ -33,7 +33,7 @@ Our commercialized newspapers are able to bring in more funds. However, the Thal
 @campaign
 title: The purpose of our media is to elect more Communists.
 subtitle: Our newspapers will focus on the electoral campaign.
-on-arrival: campaign_media += 1; workers_kpd += 4*(1 - dissent); unemployed_kpd += 4*(1-dissent);
+on-arrival: campaign_media += 1; workers_kpd += 4*(1 - dissent); unemployed_kpd += 4*(1-dissent); socialism += 3*(1 - dissent)
 
 This is our historical approach. Our campaign media is mostly reaching the workers who are already saturated with Socialist propaganda, but it must be doing *something*, or at least that is what we hope.
 
