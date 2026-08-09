@@ -10,13 +10,24 @@ new-page: true
 Arendsee is a longtime member of the KPD, a Reichstag member, and a prominent member of the Internationale Arbeiterhilfe.
 
 - @arbeiterhilfe
-- @die_kommunistin
+- @proletarische_sozialpolitik
 - @fundraising
 - @root: Return to main
 
 @arbeiterhilfe
-title: Conducting mutual aid for workers in Germany
-sbtitle: Improve our standing among the working class.
+title: Arbeierhilfe
+subtitle: Utilize our mutual aid organization to increase our standing among the working class.
 choose-if: advisor_action_timer <= 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?] 
-on-arrival: advisor_action_timer = 6; worker_kpd += 6*(1-dissent);
+on-arrival: advisor_action_timer = 6; worker_kpd += 3*(1-dissent); unemployed_kpd += 3*(1-dissent)
+
+@proletarische_sozialpolitik
+title: Proleratische Sozialpolitik
+Subtitle: Improve standing among the proletariat and agitate for socialism
+choose-if: advisor_action_timer <= 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?] 
+on-arrival: advisor_action_timer = 6; worker_kpd += 3*(1-dissent); unemployed_kpd += 3*(1-dissent); socialism += 3*(1-dissent)
+
+@fundraising
+title: Fundraising
+new-page: true 
