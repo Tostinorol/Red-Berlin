@@ -11,7 +11,7 @@ Arendsee is a longtime member of the KPD, a Reichstag member, and a prominent me
 
 - @arbeiterhilfe
 - @proletarische_sozialpolitik
-- @fundraising
+- @emergency_fundraising
 - @root: Return to main
 
 @arbeiterhilfe
@@ -23,11 +23,14 @@ on-arrival: advisor_action_timer = 6; worker_kpd += 3*(1-dissent); unemployed_kp
 
 @proletarische_sozialpolitik
 title: Proleratische Sozialpolitik
-Subtitle: Improve standing among the proletariat and agitate for socialism
+subtitle: Improve standing among the proletariat and agitate for socialism
 choose-if: advisor_action_timer <= 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?] 
 on-arrival: advisor_action_timer = 6; worker_kpd += 3*(1-dissent); unemployed_kpd += 3*(1-dissent); socialism += 3*(1-dissent)
 
-@fundraising
-title: Fundraising
-new-page: true 
+@emergency_fundraising
+title: Emergency Fundraising
+subtitle: An emergency infusion of resources.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: advisor_action_timer = 6; resources += dues
