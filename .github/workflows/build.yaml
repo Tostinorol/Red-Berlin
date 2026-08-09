@@ -4,7 +4,7 @@ name: Deploy static content to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: ["main", "Red-Berlin-Test"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -41,9 +41,9 @@ jobs:
       - name: Copy game.json to output
         run: cp out/game.json out/html/
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: 'out/html'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
