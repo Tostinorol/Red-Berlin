@@ -17,7 +17,7 @@ The Nazi SA has disrupted our rally! Their street troops are preventing us from 
 - @cancel: Cancel the rally.
 
 @police_protect
-view-if: spd_prussia == 1; spd_relation >= 70
+view-if: spd_prussia == 1 and spd_relation >= 70
 on-arrival: police_protect_success = prussian_police_loyalty * prussian_police_militancy * prussian_police_strength*2 - sa_militancy*sa_strength;
 go-to: police_protect_win if police_protect_success >= 0; police_protect_lose if police_protect_success < 0
 
@@ -86,7 +86,7 @@ on-arrival: workers_kpd += 3*(1-dissent); workers_kpd += 4*(1-dissent) if pro_re
 Our message of revolution is expected, but it appeals to the left wing of the working class, while surely alienating the middle class and other parties. [? if nationalization_progress > 0 : Our achievements in nationalization have assisted our messaging. ?]
 
 @united_front
-on-arrival: workers_kpd += 3*(1-dissent); workers_kpd += 4*(1-dissent) if socialism >= 60; unemployed_kpd += 3*(1-dissent); unemployed_kpd += 5*(1-dissent) if socialism >= 60; conciliators_strength += 5; labor_wing_strength += 3; conciliators_dissent -= 3; labor_wing_dissent -= 3; spd_relation += 5; z_relation += 2; united_front_support += 2; popular_front_support += 1 socialism += 2*(1-dissent); pro_republic += 2*(1-dissent)
+on-arrival: workers_kpd += 3*(1-dissent); workers_kpd += 4*(1-dissent) if socialism >= 60; unemployed_kpd += 3*(1-dissent); unemployed_kpd += 5*(1-dissent) if socialism >= 60; conciliators_strength += 5; labor_wing_strength += 3; conciliators_dissent -= 3; labor_wing_dissent -= 3; spd_relation += 5; z_relation += 2; united_front_support += 2; popular_front_support += 1; socialism += 2*(1-dissent); pro_republic += 2*(1-dissent)
 
 The conciliatory rhetoric is unexpected, but welcomed by the left and some centrists within the SPD. Our message of working class unity against the forces of reaction Grassroots support for a united front against fascism is growing among the rank-and-file of both parties, even the middle-class.
 
