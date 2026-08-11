@@ -56,7 +56,7 @@ on-arrival: resources += 1; rb_strength -= 100; rb_militancy -= 0.05; thalmannit
 Cutting resources to the RFB causes a drop in the membership, and leads some would-be members to join the Reichsbanner and SPD instead.
 
 
-@women_rfmb
+@women_rfb
 title: Integrate the Roter Frauen und Mädchen Bund, our women's only mass organization, into the RFB to bolster our defenses.
 subtitle: -1 resources
 view-if: zetkin_advisor == 1 and thalmannites_strength < conciliators_strength and antifa_formed == 1
