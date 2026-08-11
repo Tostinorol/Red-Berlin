@@ -462,6 +462,7 @@ title: The SPD leads the Weimar Coalition.
 view-if: muller_dead = 0 and not (spd_relation >= 70 and spd_party_leader = "Rosenfeld") and spd_relation < 60 and not (spd_relation <= 30 and not historical_mode)
 on-arrival: chancellor = "Müller"; chancellor_party = "SPD"; kpd_toleration = 0; kpd_in_government = 0; in_weimar_coalition = 1; spd_in_government = 1; minority_government = 0; in_popular_front = 0; in_united_front = 0; foreign_minister_party = "Z"; interior_minister_party = "SPD"; justice_minister_party = ddp_name; labor_minister_party = "SPD"; reichswehr_minister_party = "I"; economic_minister_party = "SPD"; finance_minister_party = "Z"; agriculture_minister_party = "Z"; foreign_minister = "Wirth"; interior_minister = "Severing"; justice_minister = "Koch-Weser"; labor_minister = "Wissell"; reichswehr_minister = "Groener"; economic_minister = "Hilferding"; finance_minister = "Hermes"; agriculture_minister = "Hermes";
 title: Herman Muller has gathered the party behind him.
+
 Hermann Müller has become chancellor of the Weimar Coalition.
 
 @weimar_spd_wels
