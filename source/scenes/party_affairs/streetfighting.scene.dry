@@ -17,16 +17,17 @@ We must do something to oppose the fascists in the streets.
 - @antifa_training: Train union members to fight as part of Antifaschiste Aktion.
 - @union_recruiting: Rally workers from the unions we influence to join us.
 - @peace: Try to avoid all militant confrontations, as much as possible.
-- @truce_rb: Try to make peace with the RFB.
+- @truce_rfb: Try to make peace with the RFB.
 - @easy_discard
 
 @battle
 title: We will test our forces against the enemy. 
 view-if: rfb_militancy > 0.1 
-- @attack_rb_rally
-- @attack_sa_rally
 
 Many Rotfrontkampferbund members are eager to take the fight to the enemy. Where will we direct our members?
+
+- @attack_rb_rally
+- @attack_sa_rally
 
 @attack_rb_rally
 unavailable-subtitle: We have signed a truce with the Reichsbanner
